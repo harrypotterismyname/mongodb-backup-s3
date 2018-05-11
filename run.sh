@@ -29,6 +29,8 @@ S3LATEST=${S3PATH}latest.dump.gz
 echo "=> Backup started"
 if mongodump --host ${MONGODB_HOST} --port ${MONGODB_PORT} ${USER_STR}${PASS_STR}${DB_STR} --archive=\${BACKUP_NAME} --gzip ${EXTRA_OPTS} && aws s3 cp \${BACKUP_NAME} \${S3BACKUP} && aws s3 cp \${S3BACKUP} \${S3LATEST} && rm \${BACKUP_NAME} ;then
     echo "   > Backup succeeded"
+    wget https://hchk.io/71c5a831-0a35-412e-9647-327eb26a06a7 -O /dev/null
+
 else
     echo "   > Backup failed"
 fi
